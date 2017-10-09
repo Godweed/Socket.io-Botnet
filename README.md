@@ -11,3 +11,6 @@
   
 # What is botnet capable of doing?
 - Anything JavaScript is capable of doing. For example, dumping cookies from website, Iframeing a website or even used as keylogger.
+
+# Disclaimer
+This repository is for academic purposes, the use of this software is your responsibility.
