@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<script src="socket.io.js">
+	</script>
+	<script>
+	   var socket = io.connect("http://localhost:7035");
+	   socket.on('ConDis', function(data){
+	       if(data[0] == "+") {
+	           let tempTr = document.createElement("tr");
+	           tempTr.id = "bot"+data.slice(1,data.length);
+	           tempTr.innerHTML = "<td>"+data.slice(1,data.length)+"<\/td>";
+	           document.getElementById("botsTable").appendChild(tempTr);
+	       } else if(data[0] == "-") {
+	           console.log(document.getElementById("bot"+data.slice(1,data.length)))
+	           document.getElementById("bot"+data.slice(1,data.length)).remove();
+	       }
+	   });
+	   
+	   function Command()
+	   {
+	       socket.emit('command', document.getElementById('command').value, document.getElementById('towho').value);
+	   }
+	   
+	   Element.prototype.remove = function() {
+	       this.parentElement.removeChild(this);
+	   }
+	</script>
+	<style>
+	table, th, td {
+	   border: 1px solid black;
+	}
+	</style>
+	<title></title>
+</head>
+<body>
+	<table id="botsTable">
+		<tr>
+			<th>Socket ID</th>
+		</tr>
+	</table><br>
+	<br>
+	Command:
+	<form>
+		<input id="command" type="text" value="alert('Hello')"><br>
+		To Socket:<input id="towho" type="text" value="all"><br>
+		<button onclick="Command();">Send</button> 
+	</form>
+</body>
+</html>
